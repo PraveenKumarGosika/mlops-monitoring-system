@@ -175,8 +175,49 @@ elif button_4:
             else:
                 count_dict_1[ent[2]] = 1
     sum_of_entities = sum(count_dict_1.values())
+    new_count_dict_1 = {}
     for key in count_dict_1.keys():
-        count_dict_1[key] = round((count_dict_1[key] / sum_of_entities) * 100, 2)
+        if key == "AWARDS":
+            key_m = "AW"
+        elif key == "CERTIFICATIONS":
+            key_m = "CT"
+        elif key == "CLIENT":
+            key_m = "CL"
+        elif key == "COMPANY":
+            key_m = "COM"
+        elif key == "COMPANY_LOC":
+            key_m = "COM_LOC"
+        elif key == "DESGINATION":
+            key_m = "DESG"
+        elif key == "EDUCATIONAL_INSTITUTION":
+            key_m = "E_I"
+        elif key == "GITHUB_URL":
+            key_m = "G_U"
+        elif key == "HIGHER_EDUCATION":
+            key_m = "HI_EDU"
+        elif key == "LINKEDIN_URL":
+            key_m = "LN_URL"
+        elif key == "LinkedIn URL":
+            key_m = "Ln_URL"
+        elif key == "PASSOUTYEAR":
+            key_m = "PASS"
+        elif key == "PHONE_NO":
+            key_m = "PH_NO"
+        elif key == "TOTAL_EXP":
+            key_m = "TOT_EXP"
+        elif key == "WORKING_DATES":
+            key_m = "W_D"
+        elif key == "PERSON_ADDRESS":
+            key_m = "P_A"
+        else:
+            key_m = key
+        new_count_dict_1[key_m] = round((count_dict_1[key] / sum_of_entities) * 100, 2)
+    entities_1 = []
+    values_1 = []
+    for k in sorted(new_count_dict_1):
+        entities_1.append(k)
+        values_1.append(new_count_dict_1[k])
+    print("new_count_dict_1", new_count_dict_1)
     count_dict_2 = {}
     for d in data_2:
         temp_entities = d[1]['entities']
@@ -186,46 +227,77 @@ elif button_4:
             else:
                 count_dict_2[ent[2]] = 1
     sum_of_entities = sum(count_dict_2.values())
+    new_count_dict_2 = {}
     for key in count_dict_2.keys():
-        count_dict_2[key] = round((count_dict_2[key] / sum_of_entities) * 100, 2)
-    entities_1 = list(count_dict_1.keys())
-    values_1 = list(count_dict_1.values())
-    entities_2 = list(count_dict_2.keys())
-    values_2 = list(count_dict_2.values())
+        if key == "AWARDS":
+            key_m = "AW"
+        elif key == "CERTIFICATIONS":
+            key_m = "CT"
+        elif key == "CLIENT":
+            key_m = "CL"
+        elif key == "COMPANY":
+            key_m = "COM"
+        elif key == "COMPANY_LOC":
+            key_m = "COM_LOC"
+        elif key == "DESGINATION":
+            key_m = "DESG"
+        elif key == "EDUCATIONAL_INSTITUTION":
+            key_m = "E_I"
+        elif key == "GITHUB_URL":
+            key_m = "G_U"
+        elif key == "HIGHER_EDUCATION":
+            key_m = "HI_EDU"
+        elif key == "LINKEDIN_URL":
+            key_m = "LN_URL"
+        elif key == "LinkedIn URL":
+            key_m = "Ln_URL"
+        elif key == "PASSOUTYEAR":
+            key_m = "PASS"
+        elif key == "PHONE_NO":
+            key_m = "PH_NO"
+        elif key == "TOTAL_EXP":
+            key_m = "TOT_EXP"
+        elif key == "WORKING_DATES":
+            key_m = "W_D"
+        elif key == "PERSON_ADDRESS":
+            key_m = "P_A"
+        else:
+            key_m = key
+        new_count_dict_2[key_m] = round((count_dict_2[key] / sum_of_entities) * 100, 2)
+    entities_2 = []
+    values_2 = []
+    for k in sorted(new_count_dict_2):
+        entities_2.append(k)
+        values_2.append(new_count_dict_2[k])
+    print("new_count_dict_2", new_count_dict_2)
     import matplotlib.pyplot as plt
     c1, c2 = st.columns((10, 10))
     with c1:
-        fig_9 = plt.figure()
+        fig_9 = plt.figure(figsize=(10, 10))
         plt.bar(entities_1[0:5], values_1[0:5], alpha=0.75, label="few months back data",
                 width=0.4)
         plt.bar(entities_2[0:5], values_2[0:5], alpha=0.5, label="present data",
                 width=0.4)
         plt.legend()
         st.pyplot(fig_9)
-        fig_10 = plt.figure()
+        fig_10 = plt.figure(figsize=(10, 10))
         plt.bar(entities_1[5:10], values_1[5:10], alpha=0.75, label="few months back data",
                 width=0.4)
-        entities_2 = list(count_dict_2.keys())
-        values_2 = list(count_dict_2.values())
         plt.bar(entities_2[5:10], values_2[5:10], alpha=0.5, label="present data",
                 width=0.4)
         plt.legend()
         st.pyplot(fig_10)
     with c2:
-        fig_11 = plt.figure()
+        fig_11 = plt.figure(figsize=(10, 10))
         plt.bar(entities_1[10:15], values_1[10:15], alpha=0.75, label="few months back data",
                 width=0.4)
-        entities_2 = list(count_dict_2.keys())
-        values_2 = list(count_dict_2.values())
         plt.bar(entities_2[10:15], values_2[10:15], alpha=0.5, label="present data",
                 width=0.4)
         plt.legend()
         st.pyplot(fig_11)
-        fig_12 = plt.figure()
+        fig_12 = plt.figure(figsize=(10, 10))
         plt.bar(entities_1[15:], values_1[15:], alpha=0.75, label="few months back data",
                 width=0.4)
-        entities_2 = list(count_dict_2.keys())
-        values_2 = list(count_dict_2.values())
         plt.bar(entities_2[15:], values_2[15:], alpha=0.5, label="present data",
                 width=0.4)
         plt.legend()
@@ -244,8 +316,49 @@ elif button_5:
             else:
                 count_dict_1[ent[2]] = 1
     sum_of_entities = sum(count_dict_1.values())
+    new_count_dict_1 = {}
     for key in count_dict_1.keys():
-        count_dict_1[key] = round((count_dict_1[key] / sum_of_entities) * 100, 2)
+        if key == "AWARDS":
+            key_m = "AW"
+        elif key == "CERTIFICATIONS":
+            key_m = "CT"
+        elif key == "CLIENT":
+            key_m = "CL"
+        elif key == "COMPANY":
+            key_m = "COM"
+        elif key == "COMPANY_LOC":
+            key_m = "COM_LOC"
+        elif key == "DESGINATION":
+            key_m = "DESG"
+        elif key == "EDUCATIONAL_INSTITUTION":
+            key_m = "E_I"
+        elif key == "GITHUB_URL":
+            key_m = "G_U"
+        elif key == "HIGHER_EDUCATION":
+            key_m = "HI_EDU"
+        elif key == "LINKEDIN_URL":
+            key_m = "LN_URL"
+        elif key == "LinkedIn URL":
+            key_m = "Ln_URL"
+        elif key == "PASSOUTYEAR":
+            key_m = "PASS"
+        elif key == "PHONE_NO":
+            key_m = "PH_NO"
+        elif key == "TOTAL_EXP":
+            key_m = "TOT_EXP"
+        elif key == "WORKING_DATES":
+            key_m = "W_D"
+        elif key == "PERSON_ADDRESS":
+            key_m = "P_A"
+        else:
+            key_m = key
+        new_count_dict_1[key_m] = round((count_dict_1[key] / sum_of_entities) * 100, 2)
+    entities_1 = []
+    values_1 = []
+    for k in sorted(new_count_dict_1):
+        entities_1.append(k)
+        values_1.append(new_count_dict_1[k])
+
     count_dict_2 = {}
     for d in data_2:
         temp_entities = d[1]['entities']
@@ -255,50 +368,96 @@ elif button_5:
             else:
                 count_dict_2[ent[2]] = 1
     sum_of_entities = sum(count_dict_2.values())
+    new_count_dict_2 = {}
     for key in count_dict_2.keys():
-        count_dict_2[key] = round((count_dict_2[key] / sum_of_entities) * 100, 2)
-    entities_1 = list(count_dict_1.keys())
-    values_1 = list(count_dict_1.values())
+        if key == "AWARDS":
+            key_m = "AW"
+        elif key == "CERTIFICATIONS":
+            key_m = "CT"
+        elif key == "CLIENT":
+            key_m = "CL"
+        elif key == "COMPANY":
+            key_m = "COM"
+        elif key == "COMPANY_LOC":
+            key_m = "COM_LOC"
+        elif key == "DESGINATION":
+            key_m = "DESG"
+        elif key == "EDUCATIONAL_INSTITUTION":
+            key_m = "E_I"
+        elif key == "GITHUB_URL":
+            key_m = "G_U"
+        elif key == "HIGHER_EDUCATION":
+            key_m = "HI_EDU"
+        elif key == "LINKEDIN_URL":
+            key_m = "LN_URL"
+        elif key == "LinkedIn URL":
+            key_m = "Ln_URL"
+        elif key == "PASSOUTYEAR":
+            key_m = "PASS"
+        elif key == "PHONE_NO":
+            key_m = "PH_NO"
+        elif key == "TOTAL_EXP":
+            key_m = "TOT_EXP"
+        elif key == "WORKING_DATES":
+            key_m = "W_D"
+        elif key == "PERSON_ADDRESS":
+            key_m = "P_A"
+        else:
+            key_m = key
+        new_count_dict_2[key_m] = round((count_dict_2[key] / sum_of_entities) * 100, 2)
+    entities_2 = []
+    values_2 = []
+    new_count_dict_2_m = {}
+    for k in new_count_dict_1.keys():
+        if k not in new_count_dict_2.keys():
+            new_count_dict_2_m[k] = 0.1
+        else:
+            new_count_dict_2_m[k] = new_count_dict_2[k]
+
+    for k in sorted(new_count_dict_2_m):
+        entities_2.append(k)
+        values_2.append(new_count_dict_2_m[k])
+
     import matplotlib.pyplot as plt
+
     c1, c2 = st.columns((10, 10))
     with c1:
-        fig_9 = plt.figure()
+        fig_9 = plt.figure(figsize=(10, 10))
         plt.bar(entities_1[0:5], values_1[0:5], alpha=0.75, label="reference",
                 width=0.4)
-        entities_2 = list(count_dict_2.keys())
-        values_2 = list(count_dict_2.values())
         plt.bar(entities_2[0:5], values_2[0:5], alpha=0.5, label="test",
                 width=0.4)
         plt.legend()
         st.pyplot(fig_9)
-        fig_10 = plt.figure()
+        fig_10 = plt.figure(figsize=(10, 10))
         plt.bar(entities_1[5:10], values_1[5:10], alpha=0.75, label="reference",
                 width=0.4)
-        entities_2 = list(count_dict_2.keys())
-        values_2 = list(count_dict_2.values())
         plt.bar(entities_2[5:10], values_2[5:10], alpha=0.5, label="test",
                 width=0.4)
         plt.legend()
         st.pyplot(fig_10)
     with c2:
-        fig_11 = plt.figure()
-        plt.bar(entities_1[10:15], values_1[10:15], alpha=0.75, label="reference",
-                width=0.4)
-        entities_2 = list(count_dict_2.keys())
-        values_2 = list(count_dict_2.values())
-        plt.bar(entities_2[10:15], values_2[10:15], alpha=0.5, label="test",
-                width=0.4)
-        plt.legend()
-        st.pyplot(fig_11)
-        fig_12 = plt.figure()
+        # fig_11 = plt.figure(figsize=(10, 10))
+        # plt.bar(entities_1[10:15], values_1[10:15], alpha=0.75, label="reference",
+        #         width=0.4)
+        # plt.bar(entities_2[10:15], values_2[10:15], alpha=0.5, label="test",
+        #         width=0.4)
+        # plt.legend()
+        # st.pyplot(fig_11)
+        fig_12 = plt.figure(figsize=(10, 10))
         plt.bar(entities_1[15:], values_1[15:], alpha=0.75, label="reference",
                 width=0.4)
-        entities_2 = list(count_dict_2.keys())
-        values_2 = list(count_dict_2.values())
         plt.bar(entities_2[15:], values_2[15:], alpha=0.5, label="test",
                 width=0.4)
         plt.legend()
         st.pyplot(fig_12)
+        fig_11 = plt.figure(figsize=(10, 10))
+        plt.bar(entities_1[10:15], values_1[10:15], alpha=0.75, label="reference",
+                width=0.4)
+        plt.bar(entities_2[10:15], values_2[10:15], alpha=0.5, label="test",
+                width=0.4)
+        plt.legend()
+        st.pyplot(fig_11)
 else:
     image = Image.open('utilities/system_health.png')
     st.image(image, caption='System health')
